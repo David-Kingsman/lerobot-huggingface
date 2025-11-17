@@ -50,9 +50,35 @@ def make_robot_from_config(config: RobotConfig) -> Robot:
 
         return ViperX(config)
     elif config.type == "mock_robot":
-        from tests.mocks.mock_robot import MockRobot
+        from tests.mocks.mock_robot import MockRobot    
 
         return MockRobot(config)
+
+    elif config.type == "xarm_end_effector":
+        from .xarm import XarmEndEffector
+
+        return XarmEndEffector(config)
+
+    elif config.type == "lite6_end_effector_hil":
+        from .xarm import HILXarmLite6EndEffector
+
+        return HILXarmLite6EndEffector(config)
+    elif config.type == "uf850_end_effector_hil":
+        from .xarm import HILXarmUF850EndEffector
+
+        return HILXarmUF850EndEffector(config)
+    elif config.type == "xarm6_end_effector_hil":
+        from .xarm import HILXarm6EndEffector
+
+        return HILXarm6EndEffector(config)
+    elif config.type == "xarm6_end_effector":
+        from .xarm import Xarm6EndEffector
+
+        return Xarm6EndEffector(config)
+    elif config.type == "xarm7_end_effector_hil":
+        from .xarm import HILXarm7EndEffector
+
+        return HILXarm7EndEffector(config)
     else:
         raise ValueError(config.type)
 
